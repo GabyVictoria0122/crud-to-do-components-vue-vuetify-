@@ -12,17 +12,22 @@
 
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
-          Bem-vindo ao TODO Vuetify
+          Registrar novo Grupo TODO Vuetify
         </h1>
 
         <p class="subheading font-weight-regular">
           Gerenciando tarefas aprendendo VueJS + Vuetify + API Mock
         </p>
         <p>
-          <v-btn x-large rounded color="primary" dark :to="{ name: 'login' }">
+          <v-btn
+            x-large
+            rounded
+            color="primary"
+            dark
+            :to="{ name: 'taskList' }"
+          >
             Iniciar
           </v-btn>
-          <v-icon>{{ icon }}</v-icon>
         </p>
       </v-col>
     </v-row>
@@ -30,9 +35,5 @@
 </template>
 
 <script>
-export default {
-  data: () => ({
-    icon: "mdi-github",
-  }),
-};
+export default {};
 </script>
