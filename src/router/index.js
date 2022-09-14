@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import TaskListView from "../views/TaskListView.vue";
 import LoginView from "../views/LoginView.vue";
-import RegisterView from "../views/RegisterView.vue";
+import RegisterUserView from "../views/RegisterUserView.vue";
 import PublicLayout from "../layouts/PublicLayout.vue";
 import PrivateLayout from "../layouts/PrivateLayout.vue";
 
@@ -27,7 +27,7 @@ const routes = [
       {
         path: "registar",
         name: "registro",
-        component: RegisterView,
+        component: RegisterUserView,
       },
     ],
   },
