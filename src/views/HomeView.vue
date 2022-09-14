@@ -22,7 +22,6 @@
           <v-btn x-large rounded color="primary" dark :to="{ name: 'login' }">
             Iniciar
           </v-btn>
-          <v-icon>{{ icon }}</v-icon>
         </p>
       </v-col>
     </v-row>
@@ -30,9 +29,5 @@
 </template>
 
 <script>
-export default {
-  data: () => ({
-    icon: "mdi-github",
-  }),
-};
+export default {};
 </script>

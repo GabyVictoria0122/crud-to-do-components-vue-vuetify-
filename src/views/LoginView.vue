@@ -1,36 +1,57 @@
 <template>
-  <div class="d-flex justify-center mb-6">
-    <v-form ref="form" v-model="valid" lazy-validation>
-      <v-text-field
-        v-model="email"
-        :rules="emailRules"
-        label="E-mail"
-        required
-      ></v-text-field>
+  <v-container>
+    <v-row class="text-center">
+      <v-col md="6" offset-md="3">
+        <v-card class="pa-4" outlined tile>
+          <h2>Login</h2>
+          <v-form ref="form" v-model="valid" lazy-validation>
+            <v-text-field
+              v-model="email"
+              :rules="emailRules"
+              label="E-mail"
+              required
+            ></v-text-field>
 
-      <v-text-field
-        v-model="name"
-        :counter="10"
-        :rules="nameRules"
-        label="Password"
-        required
-      ></v-text-field>
+            <v-text-field
+              v-model="password"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.min]"
+              :type="show1 ? 'text' : 'password'"
+              name="input-10-1"
+              label="Password"
+              hint="At least 8 characters"
+              counter
+              @click:append="show1 = !show1"
+            ></v-text-field>
 
-      <v-checkbox v-model="checkbox" label="Remember me" required></v-checkbox>
+            <v-row class="d-flex justify-space-around">
+              <v-checkbox
+                v-model="checkbox"
+                label="Remember me"
+                required
+              ></v-checkbox>
 
-      <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">
-        Login
-      </v-btn>
+              <p class="ma-4">
+                <span class="subtitle-1">
+                  <a href="">Forget your password?</a></span
+                >
+              </p>
+            </v-row>
 
-      <v-btn color="error" class="mr-4" @click="reset">
-        Forget your password?
-      </v-btn>
-
-      <v-btn color="warning" :to="{ name: 'registro' }">
-        New User? SingUp
-      </v-btn>
-    </v-form>
-  </div>
+            <v-btn :disabled="!valid" class="mr-4" @click="login">
+              Let me in!
+            </v-btn>
+          </v-form>
+        </v-card>
+        <p class="ma-4">
+          <span class="subtitle-1">
+            New User?
+            <router-link :to="{ name: 'registro' }">SingUp</router-link>
+          </span>
+        </p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -38,23 +59,26 @@ export default {
   data: () => ({
     valid: true,
     name: "",
-    nameRules: [
-      (v) => !!v || "Name is required",
-      (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
-    ],
+    show1: false,
+    password: "",
+    rules: {
+      required: (value) => !!value || "Required.",
+      min: (v) => v.length >= 8 || "Min 8 characters",
+      emailMatch: () => `The email and password you entered don't match`,
+    },
     email: "",
     emailRules: [
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
-    select: null,
-    items: ["Item 1", "Item 2", "Item 3", "Item 4"],
+
     checkbox: false,
   }),
 
   methods: {
-    validate() {
+    login() {
       this.$refs.form.validate();
+      console.log("@click no ");
     },
     reset() {
       this.$refs.form.reset();
